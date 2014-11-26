@@ -1,0 +1,65 @@
+@border-color      : #eee;
+@active-background : #000;
+@active-color      : #fff;
+
+.tms-tabs
+{
+	> nav
+	{
+		ul
+		{	
+			list-style : none;
+
+			li
+			{	
+				margin  : 0;
+				padding : 0;
+				float   : left;
+				margin  : 0px 0px -1px 0px;
+
+				a
+				{	
+					display : block;
+					padding : 8px 15px;
+					border  : 1px solid @border-color;
+					border-color : none;
+
+					&:hover
+					{
+						cursor : pointer;
+					}
+				}
+
+				&:first-child > a
+				{
+					border-left : 1px solid @border-color;
+				}
+
+				&.active > a
+				{	
+					background   : @active-background;
+					color        : @active-color;
+					border-color : @active-background;
+				}
+
+				&:first-child.active > a
+				{
+					border-color : @active-background;
+				}
+			}
+		}
+	}
+
+	> div
+	{
+		display    : none;
+		position   : relative;
+		border     : 1px solid @border-color;
+		padding    : 20px;
+		
+		&.active
+		{
+			display : block;
+		}
+	}
+}
