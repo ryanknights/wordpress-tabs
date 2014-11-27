@@ -1,5 +1,19 @@
 (function (window, document)
-{
+{	
+	if (!'bind' in Function.prototype)
+	{
+		Function.prototype.bind = function (context)
+		{
+			var fn   = this,
+				args = Array.prototype.slice.call(arguments, 1);
+
+			return function ()
+			{
+				return fn.apply(context, args);
+			}
+		}
+	}
+
 	function Tabs (el, options)
 	{
 		this.el         = el;
@@ -16,7 +30,7 @@
 	};
 
 	Tabs.prototype._events = function ()
-	{
+	{	
 		for (var i = 0, l = this.navigation.length; i < l; i++)
 		{	
 			if (document.addEventListener !== undefined)
