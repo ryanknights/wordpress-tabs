@@ -50,7 +50,7 @@
 
 		public function registerScript ()
 		{
-			wp_register_script('tms-tabs', plugin_dir_url(__FILE__) . 'assets/js/tms-tabs.min.js', 'jquery', '1.0', true);
+			wp_register_script('tms-tabs', plugin_dir_url(__FILE__) . 'assets/js/tms-tabs.min.js', array(), '1.0', true);
 			wp_register_style('tms-tabs', plugin_dir_url(__FILE__) . 'assets/css/tms-tabs.css');
 		}
 
@@ -113,7 +113,7 @@
 
 				$html .= '</ul></nav>';
 
-				$html .= $tabsContent;
+				$html .= '<div class="tms-tabs-content">'.$tabsContent.'</div>';
 
 			$html .= '</div>';
 
@@ -139,9 +139,9 @@
 
 			array_push($this->tabs, $attributes['title']);
 
-			$html .= '<div '.((count($this->tabs) === 1) ? 'class="active"' : '').' data-tab-container="'.(count($this->tabs)).'">';
+			$html .= '<section '.((count($this->tabs) === 1) ? 'class="active"' : '').' data-tab-container="'.(count($this->tabs)).'">';
 				$html .= do_shortcode($content);
-			$html .= '</div>';
+			$html .= '</section>';
 
 			return $html;
 		}
@@ -155,14 +155,9 @@
 
 		public function removeChars ($content)
 		{
-			// array of custom shortcodes requiring the fix 
 			$block = join("|",array("tabs", "tab"));
-
-			// opening tag
-			$rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
-				
-			// closing tag
-			$rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
+			$rep   = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
+			$rep   = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
 
 			return $rep;
 		}
