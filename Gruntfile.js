@@ -46,7 +46,7 @@ module.exports = function (grunt)
 
 			scripts :
 			{
-				files : ['inc/assets/js/*.js'],
+				files : ['inc/assets/js/tms-tabs.js'],
 				tasks : ['uglify:app']
 			},
 

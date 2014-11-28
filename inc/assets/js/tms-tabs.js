@@ -60,9 +60,11 @@
 		this.currentTab = index;
 	}
 
-	Array.prototype.slice.call(document.querySelectorAll('[data-tms-tabs]')).forEach(function (el)
+	var els = document.querySelectorAll('[data-tms-tabs]');
+
+	for (var i = 0, l = els.length; i < l; i++)
 	{
-		new Tabs(el);
-	});
+		new Tabs(els[i])
+	}
 
 }(window, document));
