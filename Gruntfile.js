@@ -52,7 +52,7 @@ module.exports = function (grunt)
 
 			stylesheets :
 			{
-				files : ['inc/assets/css/**/*.css', 'inc/assets/css/**/*.less'],
+				files : ['inc/assets/css/tms-tabs.less'],
 				tasks : ['less', 'cssmin']
 			},
 		}
