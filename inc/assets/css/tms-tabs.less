@@ -10,6 +10,13 @@
 		{	
 			list-style : none;
 
+			&:after
+			{
+				content : '';
+				display : table;
+				clear   : both;				
+			}
+
 			li
 			{	
 				margin  : 0;
@@ -51,15 +58,20 @@
 	}
 
 	> div > section
-	{
-		display    : none;
-		position   : relative;
-		border     : 1px solid @border-color;
-		padding    : 20px;
-		
-		&.active
+	{	
+		display : block;
+
+		> section
 		{
-			display : block;
+			display    : none;
+			position   : relative;
+			border     : 1px solid @border-color;
+			padding    : 20px;
+			
+			&.active
+			{
+				display : block;
+			}
 		}
 	}
 }
