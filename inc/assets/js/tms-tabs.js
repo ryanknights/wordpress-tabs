@@ -19,7 +19,7 @@
 		this.el         = el;
 		this.navigation = this.el.querySelectorAll('nav ul li');
 		this.tabs       = this.el.querySelectorAll('div.tms-tabs-content > section');
-		this.currentTab = 0;
+		this.currentTab = this._startIndex();
 
 		this._init();
 	}
@@ -27,6 +27,19 @@
 	Tabs.prototype._init = function ()
 	{
 		this._events();
+	};
+
+	Tabs.prototype._startIndex = function ()
+	{
+		for (var i = 0, l = this.navigation.length; i < l; i++)
+		{
+			if (this.navigation[i].className === 'active')
+			{
+				return i;
+			}
+		}
+
+		return 0;
 	};
 
 	Tabs.prototype._events = function ()

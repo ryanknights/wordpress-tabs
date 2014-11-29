@@ -97,7 +97,12 @@
 			$this->tabs      = array();
 			$this->addScript = true;
 
-			$attributes  = shortcode_atts(array(), $atts);
+			$attributes  = shortcode_atts(array(
+				'active' => 1
+			), $atts);
+
+			$this->activeTab = $attributes['active'];
+
 			$tabsContent = do_shortcode($content);
 
 			$html .= '<div class="tms-tabs" data-tms-tabs>';
@@ -106,7 +111,7 @@
 
 				foreach ($this->tabs as $index => $title)
 				{
-					$html .= '<li '.(($index === 0) ? 'class="active"' : '').'>
+					$html .= '<li '.(($index == $attributes['active'] - 1) ? 'class="active"' : '').'>
 								<a data-tab-navigation="'.($index + 1).'">'.$title.'</a>
 							  </li>';
 				}
@@ -139,7 +144,7 @@
 
 			array_push($this->tabs, $attributes['title']);
 
-			$html .= '<section '.((count($this->tabs) === 1) ? 'class="active"' : '').' data-tab-container="'.(count($this->tabs)).'">';
+			$html .= '<section '.((count($this->tabs) == $this->activeTab) ? 'class="active"' : '').' data-tab-container="'.(count($this->tabs)).'">';
 				$html .= do_shortcode($content);
 			$html .= '</section>';
 
